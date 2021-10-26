@@ -31,7 +31,7 @@ const httpLink = createHttpLink({
   uri:
     process.env.NODE_ENV === "development"
       ? "http://localhost:4000/graphql"
-      : "http://just-eats-api.herokuapp.com/graphql",
+      : "https://just-eats-api.herokuapp.com/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
