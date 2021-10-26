@@ -160,7 +160,7 @@ const MyRestaurant = () => {
                 height={650}
                 theme={VictoryTheme.material}
                 width={window.innerWidth + 150}
-                domainPadding={50}
+                domainPadding={120}
                 containerComponent={<VictoryVoronoiContainer />}
               >
                 <VictoryLine

@@ -12,11 +12,12 @@ export const dotenvConfig: ConfigModuleOptions = {
     NODE_ENV: Joi.string()
       .valid('development', 'production', 'testing')
       .required(),
-    DB_HOST: Joi.string().required(),
-    DB_PORT: Joi.number().required(),
-    DB_USERNAME: Joi.string().required(),
-    DB_PASSWORD: Joi.string().required(),
-    DB_NAME: Joi.string().required(),
+    DB_HOST: Joi.string(),
+    DB_PORT: Joi.number(),
+    DB_USERNAME: Joi.string(),
+    DB_PASSWORD: Joi.string(),
+    DB_NAME: Joi.string(),
+
     PRIVATE_KEY: Joi.string().required(),
 
     MAILGUN_API_KEY: Joi.string().required(),
@@ -30,6 +31,7 @@ export const dotenvConfig: ConfigModuleOptions = {
 };
 
 export const graphqlConfig: GqlModuleOptions = {
+  playground: __dev__,
   installSubscriptionHandlers: true,
   autoSchemaFile: true, // if true, types generated will be stored in memory unlike if path is given
   // Extract token from ws context  and put it in GraphQL context

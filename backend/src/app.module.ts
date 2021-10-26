@@ -17,7 +17,7 @@ import { User } from './users/entities/User.entity';
 import { Verification } from './users/entities/Verification.entity';
 import { UsersModule } from './users/users.module';
 import { dotenvConfig, graphqlConfig } from './utils/configs';
-import { __dev__ } from './utils/constants';
+import { __dev__, __prod__ } from './utils/constants';
 import { PaymentsModule } from './payments/payments.module';
 import { Payment } from './payments/entities/Payment.entity';
 import { ScheduleModule } from '@nestjs/schedule';
@@ -29,13 +29,22 @@ import { UploadsModule } from './uploads/uploads.module';
     GraphQLModule.forRoot(graphqlConfig),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DB_HOST,
-      port: +process.env.DB_PORT,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
+      ...(process.env.DATABASE_URL
+        ? { url: process.env.DATABASE_URL }
+        : {
+            host: process.env.DB_HOST,
+            port: +process.env.DB_PORT,
+            username: process.env.DB_USERNAME,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_NAME,
+          }),
       synchronize: __dev__,
       logging: __dev__,
+      ...(__prod__ && {
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      }),
       entities: [
         User,
         Verification,
