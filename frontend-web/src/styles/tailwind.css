@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .app-input {
+    @apply p-3 transition duration-150 border border-gray-200 focus:outline-none focus:border-gray-500;
+  }
+
+  .app-submit-btn {
+    @apply p-3 text-lg font-normal text-white transition duration-200 ease-in-out bg-lime-600 hover:bg-lime-700 hover:opacity-90;
+  }
+
+  .app-container {
+    @apply w-full max-w-screen-xl px-5 xl:px-0;
+  }
+}
