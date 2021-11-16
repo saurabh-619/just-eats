@@ -27,26 +27,30 @@ export class AuthGuard implements CanActivate {
 
     const gqlContext = GqlExecutionContext.create(context).getContext();
 
-    // console.log({ gqlContext });
+    console.log({ gqlContext });
     const token = gqlContext['token'];
 
     if (token) {
-      const decoded = this.jwtService.verify(token.toString());
-      if (typeof decoded === 'object' && decoded.hasOwnProperty('id')) {
-        const user = await this.userService.findById(decoded['id']);
-        if (!user) {
+      try {
+        const decoded = this.jwtService.verify(token.toString());
+        if (typeof decoded === 'object' && decoded.hasOwnProperty('id')) {
+          const user = await this.userService.findById(decoded['id']);
+          if (!user) {
+            return false;
+          }
+
+          gqlContext['user'] = user;
+
+          if (roles.includes('Any')) {
+            // Any user can use
+            return true;
+          }
+          return roles.includes(user.role);
+        } else {
           return false;
         }
-
-        gqlContext['user'] = user;
-
-        if (roles.includes('Any')) {
-          // Any user can use
-          return true;
-        }
-        return roles.includes(user.role);
-      } else {
-        return false;
+      } catch (e) {
+        console.log({ e: e.message });
       }
     } else {
       return false;

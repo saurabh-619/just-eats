@@ -38,8 +38,8 @@ import { UploadsModule } from './uploads/uploads.module';
             password: process.env.DB_PASSWORD,
             database: process.env.DB_NAME,
           }),
-      synchronize: __dev__,
-      logging: __dev__,
+      synchronize: true,
+      logging: true,
       ...(__prod__ && {
         ssl: {
           rejectUnauthorized: false,

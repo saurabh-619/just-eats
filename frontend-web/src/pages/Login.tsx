@@ -16,11 +16,16 @@ import AppButton from "../components/AppButton";
 import { authTokenVar, isLoggedInVar } from "../apollo";
 import { LOCALSTORAGE_TOKEN } from "../utils/constants";
 import { useHistory } from "react-router-dom";
+import { History } from "history";
 
 export interface ILoginForm {
   email: string;
   password: string;
 }
+
+const nextScreen = (history: History<unknown>) => {
+  history.push("/restaurants");
+};
 
 const Login = () => {
   const history = useHistory();
@@ -35,7 +40,7 @@ const Login = () => {
       isLoggedInVar(true);
 
       // Redirect
-      history.push("/restaurants");
+      nextScreen(history);
     }
   };
 

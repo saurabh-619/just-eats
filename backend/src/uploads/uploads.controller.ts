@@ -23,15 +23,20 @@ export class UploadsController {
     return new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
         (error, result) => {
-          if (error) return reject(error);
+          if (error) {
+            console.log({ error });
+            return reject(error);
+          }
           resolve(result);
         },
       );
 
       toStream(file.buffer).pipe(uploadStream);
-    }).then((result) => {
-      // @ts-ignore
-      return { url: result?.secure_url };
-    });
+    })
+      .then((result) => {
+        // @ts-ignore
+        return { url: result?.secure_url };
+      })
+      .catch((e) => console.log(e));
   }
 }

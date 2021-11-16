@@ -61,7 +61,8 @@ export class UserService {
     } catch (e) {
       return {
         ok: false,
-        error: "Something went wrong. Account couldn't be created.",
+        error: e,
+        // error: "Something went wrong. Account couldn't be created. " ,
       };
     }
   }

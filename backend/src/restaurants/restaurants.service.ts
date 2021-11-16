@@ -69,11 +69,13 @@ export class RestaurantService {
 
   async myRestaurants(authUser: User): Promise<MyRestaurantsOutput> {
     try {
-      // @ts-ignore
       const restaurants = await this.restaurantRepo.find({
-        owner: authUser,
+        where: {
+          owner: authUser,
+        },
         relations: ['category'],
       });
+
       return {
         ok: true,
         restaurants,
@@ -99,7 +101,6 @@ export class RestaurantService {
           relations: ['category', 'menu', 'orders'],
         },
       );
-      console.log({ restaurantId, restaurant });
       return {
         ok: true,
         restaurant,
@@ -256,6 +257,7 @@ export class RestaurantService {
   async findRestaurantById({
     restaurantId,
   }: RestaurantInputDto): Promise<RestaurantOutput> {
+    console.log('findRestaurantById');
     try {
       const restaurant = await this.restaurantRepo.findOne(restaurantId, {
         relations: ['category', 'owner', 'menu'],

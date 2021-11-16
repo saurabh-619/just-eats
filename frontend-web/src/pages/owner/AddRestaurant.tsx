@@ -96,6 +96,10 @@ const AddRestaurant = () => {
         await fetch("http://localhost:4000/uploads", {
           method: "POST",
           body: formBody,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "multipart/form-data",
+          },
         })
       ).json();
       setImgUrl(coverImg);
