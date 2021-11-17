@@ -5,7 +5,6 @@ import About from "../screens/About";
 import OrderNotificationClient from "../screens/client/OrderNotificationClient";
 import DriverDashboard from "../screens/driver/DriverDashboard";
 import OrderNotificationDriver from "../screens/driver/OrderNotificationDriver";
-import Home from "../screens/Home";
 import Login from "../screens/Login";
 import AddRestaurant from "../screens/owner/AddRestaurant";
 import MyRestaurants from "../screens/owner/MyRestaurants";
@@ -29,7 +28,6 @@ export default function RootNavigation() {
         screenOptions={rootStackNavigationOptions}
       >
         <Stack.Screen name="Splash" component={Splash} />
-        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="About" component={About} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />

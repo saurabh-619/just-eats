@@ -35,10 +35,11 @@ const Profile: React.FC<ProfileNavigationProps> = ({ navigation }) => {
       dispatch(clearUser());
     }, 2000);
   };
+
   return (
     <View style={commonStyles.appContainer}>
       <Text style={commonStyles.appTitle}>Profile</Text>
-      {!user?.isVerified && (
+      {!user?.verified && (
         <AppNotice
           title="Verify email"
           body="Go to the registered email and verify the mail-id, To enjoy all the features"
@@ -53,7 +54,7 @@ const Profile: React.FC<ProfileNavigationProps> = ({ navigation }) => {
               style={styles.image}
             />
           </View>
-          {user?.isVerified && (
+          {user?.verified && (
             <Ionicons name="checkmark-circle" style={styles.verifiedIcon} />
           )}
         </View>
@@ -64,7 +65,7 @@ const Profile: React.FC<ProfileNavigationProps> = ({ navigation }) => {
       </View>
       <View style={styles.profileDetails}>
         <View style={[t.flexRow]}>
-          <Feather name="calendar" style={styles.profileIcons} />
+          <Feather name="calendar" style={[styles.profileIcons, t.mR5]} />
           <Text style={styles.detailText}>
             {dayjs(user?.createdAt).format("DD MMM, YYYY")}
           </Text>
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   image: {
-    marginTop: 100,
+    marginTop: 0,
     height: 90,
     width: 90,
     marginBottom: 15,
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
   },
   verifiedIcon: {
     position: "absolute",
-    bottom: 3,
+    bottom: 50,
     right: 0,
     zIndex: 1,
     fontSize: 32,

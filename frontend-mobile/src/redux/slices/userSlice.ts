@@ -6,14 +6,14 @@ export interface UserState {
   email: string;
   role: UserRole;
   createdAt: string;
-  isVerified?: boolean;
+  verified?: boolean;
 }
 
 const initialState: UserState = {
   id: -1,
   email: "",
   role: UserRole.Client,
-  isVerified: false,
+  verified: false,
   createdAt: "",
 };
 
@@ -25,14 +25,15 @@ const userSlice = createSlice({
       state.id = -1;
       state.email = "";
       state.role = UserRole.Client;
-      state.isVerified = false;
+      state.verified = false;
       state.createdAt = "";
     },
     setUser: (state, { payload }: PayloadAction<UserState>) => {
+      console.log({ payload });
       state.id = payload.id;
       state.email = payload.email;
       state.role = payload.role;
-      state.isVerified = payload.isVerified;
+      state.verified = payload.verified;
       state.createdAt = payload.createdAt;
     },
   },

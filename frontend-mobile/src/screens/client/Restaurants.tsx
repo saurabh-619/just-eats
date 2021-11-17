@@ -54,11 +54,7 @@ const Restaurants: React.FC<RestaurantsNavigationProps> = ({ navigation }) => {
   };
 
   const FooterComponent = () => {
-    return loading ? (
-      <AppLoader color={colorConstants.primary} />
-    ) : noMore ? (
-      <Text style={styles.noMoreText}>No more restaurants</Text>
-    ) : null;
+    return loading ? <AppLoader color={colorConstants.primary} /> : null;
   };
 
   const RenderItem = useCallback(
@@ -88,7 +84,11 @@ const Restaurants: React.FC<RestaurantsNavigationProps> = ({ navigation }) => {
       </View>
       {noMore && (
         <View style={styles.noMoreWrapper}>
-          <Text style={styles.noMoreText}>No more restaurants</Text>
+          <Text style={styles.noMoreText}>
+            {restaurants.length === 0
+              ? "No restaurants listed."
+              : "No more restaurants"}
+          </Text>
         </View>
       )}
     </View>
