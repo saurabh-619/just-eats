@@ -4,11 +4,10 @@ import {
   Modal,
   StyleSheet,
   Text,
-  View,
   TouchableOpacity,
+  View,
 } from "react-native";
 import { colorConstants } from "../utils/styles";
-import { DeviceWidth } from "./../utils/constants";
 
 interface ICategoryModalProps {
   modalVisible: boolean;

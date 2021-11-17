@@ -1,16 +1,12 @@
 import React from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
-import {
-  TouchableHighlight,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-} from "react-native-gesture-handler";
-import { UserRole } from "../apollo/__generated__/globalTypes";
-import { colorConstants, fontConstants } from "../utils/styles";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import Animated, {
   useAnimatedStyle,
   withSpring,
 } from "react-native-reanimated";
+import { UserRole } from "../apollo/__generated__/globalTypes";
+import { colorConstants } from "../utils/styles";
 
 interface IRoleBottomSheet {
   setRoleValue: React.Dispatch<React.SetStateAction<UserRole>>;

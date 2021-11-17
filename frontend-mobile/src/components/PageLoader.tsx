@@ -1,6 +1,6 @@
 import React from "react";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
-import { colorConstants, commonStyles } from "../utils/styles";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { colorConstants } from "../utils/styles";
 
 interface IPageLoader {
   color?: string;

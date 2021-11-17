@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Control,
-  Controller,
-  FieldValues,
-  UseControllerProps,
-} from "react-hook-form";
+import { Controller, FieldValues } from "react-hook-form";
 import { StyleSheet } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { colorConstants, fontConstants } from "../utils/styles";

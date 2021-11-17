@@ -10,11 +10,7 @@ import {
 import { RootState } from "../../../redux/store";
 import { DishType, OptionType } from "../../../utils/types";
 import Pill from "../Pill";
-import {
-  appColors,
-  colorConstants,
-  commonStyles,
-} from "./../../../utils/styles";
+import { appColors, colorConstants } from "./../../../utils/styles";
 
 interface IDishCardProps {
   dish: DishType;

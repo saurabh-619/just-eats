@@ -1,11 +1,10 @@
+import { NavigationProp } from "@react-navigation/core";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { useAppUser } from "../hooks/useAppUser";
 import { getAvatar } from "../utils/helpers";
 import { colorConstants, commonStyles } from "../utils/styles";
-import { useNavigation } from "@react-navigation/native";
-import { NavigationProp } from "@react-navigation/core";
 import { RootStackParamList } from "../utils/types";
 
 interface IAppHeaderProps {

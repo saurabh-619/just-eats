@@ -1,22 +1,21 @@
-import React, { useState } from "react";
+import { ApolloError, useMutation } from "@apollo/client";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import React from "react";
 import { Alert, Platform, StyleSheet, Text, View } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { useDispatch, useSelector } from "react-redux";
-import { setError, setSuccess } from "../../../redux/slices/msgSlice";
-import { resetOrder } from "../../../redux/slices/orderSlice";
-import { RootState } from "../../../redux/store";
-import { colorConstants, fontConstants } from "../../../utils/styles";
-import IconButton from "../../Buttons/IconButton";
-import { useNavigation } from "@react-navigation/native";
+import { CREATE_ORDER_MUTATION } from "../../../apollo/queries";
 import {
   CreateOrderMutation,
   CreateOrderMutationVariables,
 } from "../../../apollo/__generated__/CreateOrderMutation";
-import { CREATE_ORDER_MUTATION } from "../../../apollo/queries";
-import { ApolloError, useMutation } from "@apollo/client";
-import { NavigationProp } from "@react-navigation/native";
+import { setError, setSuccess } from "../../../redux/slices/msgSlice";
+import { resetOrder } from "../../../redux/slices/orderSlice";
+import { RootState } from "../../../redux/store";
+import { colorConstants, fontConstants } from "../../../utils/styles";
 import { RootStackParamList } from "../../../utils/types";
 import AppLoader from "../../AppLoader";
+import IconButton from "../../Buttons/IconButton";
 
 interface IClientButtonProps {
   restaurantId: number;

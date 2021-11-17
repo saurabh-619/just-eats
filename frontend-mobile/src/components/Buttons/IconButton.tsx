@@ -1,8 +1,8 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { colorConstants } from "../../utils/styles";
 import { Feather } from "@expo/vector-icons";
+import React from "react";
+import { StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { colorConstants } from "../../utils/styles";
 
 interface IIconButtonProps {
   icon: string;

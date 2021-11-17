@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { t } from "react-native-tailwindcss";
-import { ActionBtns } from "./ActionBtns";
 import { UserRole } from "../../apollo/__generated__/globalTypes";
 import { DishType, MenuType } from "../../utils/types";
 import NotAvailable from "../NotAvailable";
-import {
-  colorConstants,
-  commonStyles,
-  fontConstants,
-} from "./../../utils/styles";
+import { colorConstants, fontConstants } from "./../../utils/styles";
+import { ActionBtns } from "./ActionBtns";
 import DishCard from "./owner/DishCard";
 
 interface IAllDishesProps extends MenuType {

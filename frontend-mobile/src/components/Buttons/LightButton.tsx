@@ -1,10 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
-import AppLoader from "../AppLoader";
 import { colorConstants, fontConstants } from "../../utils/styles";
-import { DeviceWidth } from "../../utils/constants";
+import AppLoader from "../AppLoader";
 
 interface ILightButtonProps {
   loading?: boolean;

@@ -1,12 +1,12 @@
-import React from "react";
-import { StyleSheet, Text, Image, View } from "react-native";
-import { appColors, colorConstants, fontConstants } from "../utils/styles";
-import { RestaurantType, RootStackParamList } from "../utils/types";
 import { Feather } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { t } from "react-native-tailwindcss";
 import { NavigationProp } from "@react-navigation/core";
 import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { t } from "react-native-tailwindcss";
+import { appColors, colorConstants, fontConstants } from "../utils/styles";
+import { RestaurantType, RootStackParamList } from "../utils/types";
 
 interface IResturantCardProps {
   item: RestaurantType;

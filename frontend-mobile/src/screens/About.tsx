@@ -1,8 +1,7 @@
 import * as React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { AboutNavigationProps } from "../utils/types";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { AboutNavigationProps } from "../utils/types";
 
 const About: React.FC<AboutNavigationProps> = ({ navigation }) => {
   const handleButtonClicked = () => {

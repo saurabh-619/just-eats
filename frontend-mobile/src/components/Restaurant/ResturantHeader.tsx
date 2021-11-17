@@ -1,9 +1,9 @@
+import { Feather } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { t } from "react-native-tailwindcss";
 import { appColors, colorConstants, fontConstants } from "../../utils/styles";
-import { Feather } from "@expo/vector-icons";
 
 interface IResturantHeaderProps {
   restName?: string;

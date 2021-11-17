@@ -1,12 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "./types";
-import { OrderStatus, UserRole } from "../apollo/__generated__/globalTypes";
-
-import clientAvatar from "../../assets/images/client.png";
-import chefAvatar from "../../assets/images/chef.png";
-import deliveryAvatar from "../../assets/images/delivery.png";
 import { BackHandler } from "react-native";
+import chefAvatar from "../../assets/images/chef.png";
+import clientAvatar from "../../assets/images/client.png";
+import deliveryAvatar from "../../assets/images/delivery.png";
+import { OrderStatus, UserRole } from "../apollo/__generated__/globalTypes";
+import { RootStackParamList } from "./types";
 
 export const getLocalStorage = async (key: string) => {
   return await AsyncStorage.getItem(key);
@@ -32,7 +31,7 @@ export const initialNavigation = (
   } else if (role === UserRole.Owner) {
     navigation.replace("MyRestaurants");
   } else {
-    navigation.replace("Dashboard");
+    navigation.replace("DriverDashboard");
   }
 };
 

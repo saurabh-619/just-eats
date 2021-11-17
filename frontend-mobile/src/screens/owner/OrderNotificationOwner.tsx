@@ -1,29 +1,28 @@
 import { ApolloError, useMutation, useQuery } from "@apollo/client";
+import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import { OrderStatus } from "../../apollo/__generated__/globalTypes";
-import {
-  GetOrderQuery,
-  GetOrderQueryVariables,
-} from "../../apollo/__generated__/GetOrderQuery";
-import { OrderUpdatesSub } from "../../apollo/__generated__/OrderUpdatesSub";
-import { appColors, commonStyles, fontConstants } from "../../utils/styles";
-import { OrderNotificationOwnerNavigationProps } from "../../utils/types";
+import { t } from "react-native-tailwindcss";
 import {
   EDIT_ORDER_MUTATION,
   GET_ORDER_QUERY,
-  ORDER_SUBSCRIPTION,
+  ORDER_SUBSCRIPTION
 } from "../../apollo/queries";
-import { t } from "react-native-tailwindcss";
-import { colorConstants } from "../../utils/styles";
-import PageLoader from "../../components/PageLoader";
-import LightButton from "../../components/Buttons/LightButton";
 import {
   EditOrderMutation,
-  EditOrderMutationVariables,
+  EditOrderMutationVariables
 } from "../../apollo/__generated__/EditOrderMutation";
+import {
+  GetOrderQuery,
+  GetOrderQueryVariables
+} from "../../apollo/__generated__/GetOrderQuery";
+import { OrderStatus } from "../../apollo/__generated__/globalTypes";
+import { OrderUpdatesSub } from "../../apollo/__generated__/OrderUpdatesSub";
+import LightButton from "../../components/Buttons/LightButton";
+import PageLoader from "../../components/PageLoader";
 import { getStatusText } from "../../utils/helpers";
+import { colorConstants, commonStyles, fontConstants } from "../../utils/styles";
+import { OrderNotificationOwnerNavigationProps } from "../../utils/types";
 
 const OrderNotificationOwner: React.FC<OrderNotificationOwnerNavigationProps> =
   ({

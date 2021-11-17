@@ -1,13 +1,13 @@
-import React from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
-import * as DocumentPicker from "expo-document-picker";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { appColors, colorConstants } from "../utils/styles";
-import { DeviceWidth } from "../utils/constants";
-import { t } from "react-native-tailwindcss";
 import { Feather } from "@expo/vector-icons";
+import * as DocumentPicker from "expo-document-picker";
+import React from "react";
+import { Platform, StyleSheet, Text } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { t } from "react-native-tailwindcss";
 import { useDispatch } from "react-redux";
 import { setError } from "../redux/slices/msgSlice";
+import { DeviceWidth } from "../utils/constants";
+import { appColors, colorConstants } from "../utils/styles";
 
 interface IFileInputProps {
   imgName: string;

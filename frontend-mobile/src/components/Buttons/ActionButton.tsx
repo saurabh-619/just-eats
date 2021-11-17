@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  ActivityIndicator,
-  StyleProp,
-  StyleSheet,
-  Text,
-  ViewStyle,
-} from "react-native";
+import { StyleProp, StyleSheet, Text, ViewStyle } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { colorConstants, fontConstants } from "../../utils/styles";
 import AppLoader from "../AppLoader";

@@ -12,18 +12,17 @@ import {
   LoginMutationVariables,
 } from "../apollo/__generated__/LoginMutation";
 import { MeQuery } from "../apollo/__generated__/MeQuery";
-import ActionButton from "../components/Buttons/ActionButton";
 import AppInput from "../components/AppInput";
+import ActionButton from "../components/Buttons/ActionButton";
 import FormError from "../components/FormError";
 import { setError } from "../redux/slices/msgSlice";
 import { setToken } from "../redux/slices/tokenSlice";
 import { setUser } from "../redux/slices/userSlice";
 import { TOKEN_KEY } from "../utils/constants";
 import { initialNavigation, setLocalStorage } from "../utils/helpers";
-import { commonStyles, getMarginTop } from "../utils/styles";
+import { appColors, commonStyles, getMarginTop } from "../utils/styles";
 import { LoginNavigationProps } from "../utils/types";
 import { loginFormSchema } from "../utils/yup-schemas";
-import { appColors } from "../utils/styles";
 
 interface ILoginForm {
   email: string;

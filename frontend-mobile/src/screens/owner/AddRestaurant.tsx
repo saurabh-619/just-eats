@@ -1,15 +1,24 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useRef, useState } from "react";
+import { DocumentResult } from "expo-document-picker";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { StyleSheet, Text, View } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { t } from "react-native-tailwindcss";
 import { useDispatch } from "react-redux";
 import { CREATE_RESTAURANT_MUTATION } from "../../apollo/queries";
-import ActionButton from "../../components/Buttons/ActionButton";
+import {
+  CreateRestaurantMutation,
+  CreateRestaurantMutationVariables,
+} from "../../apollo/__generated__/CreateRestaurantMutation";
 import AppInput from "../../components/AppInput";
+import AppSelect from "../../components/AppSelect";
+import ActionButton from "../../components/Buttons/ActionButton";
+import CategoryModal from "../../components/CategoryModal";
 import FileInput from "../../components/FileInput";
 import FormError from "../../components/FormError";
+import { setError } from "../../redux/slices/msgSlice";
 import { DeviceHeight } from "../../utils/constants";
 import {
   appColors,
@@ -18,17 +27,8 @@ import {
   getMarginTop,
 } from "../../utils/styles";
 import { AddRestaurantNavigationProps } from "../../utils/types";
-import { addRestaurantFormSchema } from "./../../utils/yup-schemas";
-import {
-  CreateRestaurantMutation,
-  CreateRestaurantMutationVariables,
-} from "../../apollo/__generated__/CreateRestaurantMutation";
-import { DocumentResult } from "expo-document-picker";
 import { BASE_API_URL } from "./../../utils/constants";
-import { setError } from "../../redux/slices/msgSlice";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import AppSelect from "../../components/AppSelect";
-import CategoryModal from "../../components/CategoryModal";
+import { addRestaurantFormSchema } from "./../../utils/yup-schemas";
 
 interface IRegisterForm {
   name: string;

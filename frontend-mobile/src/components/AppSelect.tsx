@@ -1,9 +1,9 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import React from "react";
+import { StyleSheet, Text } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { fontConstants } from "../utils/styles";
 import { colorConstants } from "./../utils/styles";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 interface IAppSelectprops {
   text: string;

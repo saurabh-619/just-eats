@@ -1,20 +1,20 @@
-import { ApolloError, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { t } from "react-native-tailwindcss";
 import {
   GetOrderQuery,
   GetOrderQueryVariables,
 } from "../../apollo/__generated__/GetOrderQuery";
+import { OrderStatus } from "../../apollo/__generated__/globalTypes";
 import { OrderUpdatesSub } from "../../apollo/__generated__/OrderUpdatesSub";
 import { appColors, commonStyles, fontConstants } from "../../utils/styles";
 import { OrderNotificationClientNavigationProps } from "../../utils/types";
 import { GET_ORDER_QUERY, ORDER_SUBSCRIPTION } from "./../../apollo/queries";
-import { t } from "react-native-tailwindcss";
-import { colorConstants } from "./../../utils/styles";
 import PageLoader from "./../../components/PageLoader";
-import { OrderStatus } from "../../apollo/__generated__/globalTypes";
 import { getStatusText } from "./../../utils/helpers";
+import { colorConstants } from "./../../utils/styles";
 
 const OrderNotificationClient: React.FC<OrderNotificationClientNavigationProps> =
   ({
