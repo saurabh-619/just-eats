@@ -34,10 +34,9 @@ export const getClient = (token: string) => {
 
   const httpLink = createHttpLink({
     uri:
-      // process.env.NODE_ENV === "development"
-      //   ? `${BASE_API_URL}/graphql`
-      //   :
-      PROD_BASE_API_URL,
+      process.env.NODE_ENV === "development"
+        ? `${BASE_API_URL}/graphql`
+        : PROD_BASE_API_URL,
   });
 
   const authLink = setContext((_, { headers }) => {
