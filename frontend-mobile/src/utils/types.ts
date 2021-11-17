@@ -33,8 +33,10 @@ export type RootStackParamList = {
   OrderNotificationOwner: {
     orderId: number;
   };
+  OwnerDashboard: undefined;
+
   // Driver
-  Dashboard: undefined;
+  DriverDashboard: undefined;
   OrderNotificationDriver: {
     orderId: number;
   };
@@ -100,11 +102,15 @@ export type OrderNotificationOwnerNavigationProps = NativeStackScreenProps<
   RootStackParamList,
   "OrderNotificationOwner"
 >;
+export type OwnerDashboardNavigationProps = NativeStackScreenProps<
+  RootStackParamList,
+  "OwnerDashboard"
+>;
 
 // Driver
-export type DashboardNavigationProps = NativeStackScreenProps<
+export type DriverDashboardNavigationProps = NativeStackScreenProps<
   RootStackParamList,
-  "Dashboard"
+  "DriverDashboard"
 >;
 export type OrderNotificationDriverNavigationProps = NativeStackScreenProps<
   RootStackParamList,

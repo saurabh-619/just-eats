@@ -6,6 +6,7 @@ import { t } from "react-native-tailwindcss";
 import { useDispatch } from "react-redux";
 import { UserRole } from "../apollo/__generated__/globalTypes";
 import AppNotice from "../components/AppNotice";
+import IconButton from "../components/Buttons/IconButton";
 import LightButton from "../components/Buttons/LightButton";
 import LogoutButton from "../components/Buttons/LogoutButton";
 import { useAppUser } from "../hooks/useAppUser";
@@ -28,10 +29,10 @@ const Profile: React.FC<ProfileNavigationProps> = ({ navigation }) => {
     await removeFromLocalStorage(TOKEN_KEY);
 
     setTimeout(() => {
-      dispatch(clearUser());
       dispatch(resetToken());
       navigation.replace("Login");
       dispatch(setSuccess({ msg: "Logged out successfully." }));
+      dispatch(clearUser());
     }, 2000);
   };
   return (
@@ -62,10 +63,20 @@ const Profile: React.FC<ProfileNavigationProps> = ({ navigation }) => {
         <Text style={styles.detailText}>{user?.email}</Text>
       </View>
       <View style={styles.profileDetails}>
-        <Feather name="calendar" style={styles.profileIcons} />
-        <Text style={styles.detailText}>
-          {dayjs(user?.createdAt).format("DD MMM, YYYY")}
-        </Text>
+        <View style={[t.flexRow]}>
+          <Feather name="calendar" style={styles.profileIcons} />
+          <Text style={styles.detailText}>
+            {dayjs(user?.createdAt).format("DD MMM, YYYY")}
+          </Text>
+        </View>
+        {user?.role === UserRole.Owner && (
+          <IconButton
+            icon="bell"
+            size={15}
+            color={colorConstants.gray}
+            onClick={() => navigation.navigate("OwnerDashboard")}
+          />
+        )}
       </View>
       <View style={[styles.btnWrapper, t.flexRow, t.justifyCenter]}>
         {user?.role === UserRole.Owner && (
@@ -128,6 +139,7 @@ const styles = StyleSheet.create({
     paddingLeft: 25,
     alignItems: "center",
     flexDirection: "row",
+    justifyContent: "space-between",
   },
   profileIcons: {
     fontSize: 20,

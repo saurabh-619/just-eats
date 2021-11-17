@@ -153,7 +153,7 @@ const Dashboard = () => {
         {cookedOrdersData?.cookedOrder.restaurant ? (
           <>
             <h1 className="text-3xl font-medium text-center">
-              New Coocked Order
+              New Cooked Order
             </h1>
             <h1 className="my-3 text-2xl font-medium text-center">
               Pick it up soon @ {cookedOrdersData?.cookedOrder.restaurant?.name}

@@ -8,7 +8,7 @@ import {
   GetOrderQueryVariables,
 } from "../../apollo/__generated__/GetOrderQuery";
 import { OrderUpdatesSub } from "../../apollo/__generated__/OrderUpdatesSub";
-import { appColors, commonStyles } from "../../utils/styles";
+import { appColors, commonStyles, fontConstants } from "../../utils/styles";
 import { OrderNotificationOwnerNavigationProps } from "../../utils/types";
 import {
   EDIT_ORDER_MUTATION,
@@ -23,6 +23,7 @@ import {
   EditOrderMutation,
   EditOrderMutationVariables,
 } from "../../apollo/__generated__/EditOrderMutation";
+import { getStatusText } from "../../utils/helpers";
 
 const OrderNotificationOwner: React.FC<OrderNotificationOwnerNavigationProps> =
   ({
@@ -92,68 +93,72 @@ const OrderNotificationOwner: React.FC<OrderNotificationOwnerNavigationProps> =
     }
 
     return (
-      <View style={[commonStyles.appContainer, t.justifyCenter, t.pT0]}>
-        <LinearGradient
-          colors={["#353a5d", "#141623"]}
-          style={styles.container}
-        >
-          <Text style={[t.textWhite, t.fontBold, t.text5xl, t.textCenter]}>
-            ${data?.getOrder.order?.total}
-          </Text>
-          <View style={[t.mT5, t.w40, t.bgWhite, t.h1, t.selfCenter]} />
-          <View style={styles.contentWrapper}>
-            <View style={styles.rowContainer}>
-              <Text style={styles.contentText}>{">"} Order id</Text>
-              <Text style={styles.contentText}>#{orderId}</Text>
-            </View>
-            <View style={styles.rowContainer}>
-              <Text style={styles.contentText}>{">"} Prepared by</Text>
-              <Text style={styles.contentText}>
-                {data?.getOrder.order?.restaurant?.name}
-              </Text>
-            </View>
-            <View style={styles.rowContainer}>
-              <Text style={styles.contentText}>{">"} Customer</Text>
-              <Text style={styles.contentText}>
-                {data?.getOrder.order?.customer?.email}
-              </Text>
-            </View>
-            <View style={styles.rowContainer}>
-              <Text style={styles.contentText}>{">"} Driver</Text>
-              <Text style={styles.contentText}>
-                {data?.getOrder.order?.driver?.email || "not available yet."}
-              </Text>
-            </View>
-            {data?.getOrder.order?.status === OrderStatus.Pending && (
-              <View style={styles.btnWrapper}>
-                <LightButton
-                  text="Accept order"
-                  isLight={false}
-                  onClick={() => onActionBtnClicked(OrderStatus.Cooking)}
-                  loading={isMutating}
-                />
+      <View style={[commonStyles.appContainer]}>
+        <Text style={styles.topHeading}>Track order</Text>
+
+        <View style={[t.flex1, t.justifyCenter]}>
+          <LinearGradient
+            colors={["#353a5d", "#141623"]}
+            style={styles.container}
+          >
+            <Text style={[t.textWhite, t.fontBold, t.text5xl, t.textCenter]}>
+              ${data?.getOrder.order?.total}
+            </Text>
+            <View style={[t.mT5, t.w40, t.bgWhite, t.h1, t.selfCenter]} />
+            <View style={styles.contentWrapper}>
+              <View style={styles.rowContainer}>
+                <Text style={styles.contentText}>{">"} Order id</Text>
+                <Text style={styles.contentText}>#{orderId}</Text>
               </View>
-            )}
-            {data?.getOrder.order?.status === OrderStatus.Cooking && (
-              <View style={styles.btnWrapper}>
-                <LightButton
-                  text="Order Cooked"
-                  isLight={false}
-                  onClick={() => onActionBtnClicked(OrderStatus.Cooked)}
-                  loading={isMutating}
-                />
+              <View style={styles.rowContainer}>
+                <Text style={styles.contentText}>{">"} Prepared by</Text>
+                <Text style={styles.contentText}>
+                  {data?.getOrder.order?.restaurant?.name}
+                </Text>
               </View>
-            )}
-            {data?.getOrder.order?.status !== OrderStatus.Pending &&
-              data?.getOrder.order?.status !== OrderStatus.Cooking && (
-                <View style={styles.statusPill}>
-                  <Text style={styles.statusPillText}>
-                    {data?.getOrder.order?.status}
-                  </Text>
+              <View style={styles.rowContainer}>
+                <Text style={styles.contentText}>{">"} Customer</Text>
+                <Text style={styles.contentText}>
+                  {data?.getOrder.order?.customer?.email}
+                </Text>
+              </View>
+              <View style={styles.rowContainer}>
+                <Text style={styles.contentText}>{">"} Driver</Text>
+                <Text style={styles.contentText}>
+                  {data?.getOrder.order?.driver?.email || "not available yet."}
+                </Text>
+              </View>
+              {data?.getOrder.order?.status === OrderStatus.Pending && (
+                <View style={styles.btnWrapper}>
+                  <LightButton
+                    text="Accept order"
+                    isLight={false}
+                    onClick={() => onActionBtnClicked(OrderStatus.Cooking)}
+                    loading={isMutating}
+                  />
                 </View>
               )}
-          </View>
-        </LinearGradient>
+              {data?.getOrder.order?.status === OrderStatus.Cooking && (
+                <View style={styles.btnWrapper}>
+                  <LightButton
+                    text="Order Cooked"
+                    isLight={false}
+                    onClick={() => onActionBtnClicked(OrderStatus.Cooked)}
+                    loading={isMutating}
+                  />
+                </View>
+              )}
+              {data?.getOrder.order?.status !== OrderStatus.Pending &&
+                data?.getOrder.order?.status !== OrderStatus.Cooking && (
+                  <View style={styles.statusPill}>
+                    <Text style={styles.statusPillText}>
+                      {getStatusText(data?.getOrder.order?.status!)}
+                    </Text>
+                  </View>
+                )}
+            </View>
+          </LinearGradient>
+        </View>
       </View>
     );
   };
@@ -161,6 +166,10 @@ const OrderNotificationOwner: React.FC<OrderNotificationOwnerNavigationProps> =
 export default OrderNotificationOwner;
 
 const styles = StyleSheet.create({
+  topHeading: {
+    fontSize: 24,
+    fontFamily: fontConstants.bold,
+  },
   container: {
     height: 450,
     width: "100%",
@@ -182,7 +191,7 @@ const styles = StyleSheet.create({
   },
   contentText: {
     color: colorConstants.secondary,
-    fontSize: 18,
+    fontSize: 16,
     marginTop: 10,
   },
   btnWrapper: {

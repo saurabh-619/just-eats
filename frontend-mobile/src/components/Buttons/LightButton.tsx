@@ -23,7 +23,6 @@ const LightButton: React.FC<ILightButtonProps> = ({
       style={[
         styles.lightBtn,
         {
-          justifyContent: loading ? "center" : "space-between",
           backgroundColor: isLight
             ? colorConstants.success
             : colorConstants.white,
@@ -62,7 +61,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     height: 40,
-    minWidth: 80,
+    minWidth: 130,
+    textAlign: "center",
     paddingHorizontal: 15,
     borderRadius: 6,
     marginRight: 10,

@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./types";
-import { UserRole } from "../apollo/__generated__/globalTypes";
+import { OrderStatus, UserRole } from "../apollo/__generated__/globalTypes";
 
 import clientAvatar from "../../assets/images/client.png";
 import chefAvatar from "../../assets/images/chef.png";
@@ -55,4 +55,22 @@ export const getAvatar = (role: UserRole) => {
 export const onBackPress = (cb: () => boolean) => {
   BackHandler.addEventListener("hardwareBackPress", cb);
   return () => BackHandler.removeEventListener("hardwareBackPress", cb);
+};
+
+export const getStatusText = (status: OrderStatus) => {
+  switch (status) {
+    case OrderStatus.Pending:
+      return "Pending";
+    case OrderStatus.Cooking:
+      return "Cooking";
+    case OrderStatus.Cooked:
+      return "Cooked";
+    case OrderStatus.PickedUp:
+      return "Picked Up";
+    case OrderStatus.Delivered:
+      return "Delivered";
+
+    default:
+      return "Pending";
+  }
 };

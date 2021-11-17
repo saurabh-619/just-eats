@@ -1,33 +1,33 @@
 import { useMutation, useQuery, useSubscription } from "@apollo/client";
+import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { useHistory, useParams } from "react-router";
+import { Link } from "react-router-dom";
+import {
+  VictoryAxis,
+  VictoryChart,
+  VictoryLabel,
+  VictoryLine,
+  VictoryTheme,
+  VictoryVoronoiContainer,
+} from "victory";
+import DishCard from "../../components/DishCard";
+import { useMe } from "../../hooks/useMe";
 import {
   CREATE_PAYMENT_MUTATION,
   MY_RESTAURANT_QUERY,
   PENDING_ORDERS_SUB,
 } from "../../utils/queries";
-import { appErrorVar } from "./../../store/store";
-import {
-  MyRestaurantQuery,
-  MyRestaurantQueryVariables,
-} from "../../__generated__/MyRestaurantQuery";
-import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
-import DishCard from "../../components/DishCard";
-import {
-  VictoryChart,
-  VictoryVoronoiContainer,
-  VictoryLine,
-  VictoryAxis,
-  VictoryTheme,
-  VictoryLabel,
-} from "victory";
-import { useMe } from "../../hooks/useMe";
-import { PendingOrdersSub } from "./../../__generated__/PendingOrdersSub";
 import {
   CreatePaymentMutation,
   CreatePaymentMutationVariables,
 } from "../../__generated__/CreatePaymentMutation";
-import { useEffect } from "react";
+import {
+  MyRestaurantQuery,
+  MyRestaurantQueryVariables,
+} from "../../__generated__/MyRestaurantQuery";
+import { appErrorVar } from "./../../store/store";
+import { PendingOrdersSub } from "./../../__generated__/PendingOrdersSub";
 
 interface IParams {
   id: string;

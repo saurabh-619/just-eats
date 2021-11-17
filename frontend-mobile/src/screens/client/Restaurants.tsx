@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import React, { useCallback, useState } from "react";
-import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import { RESTAURANTS_QUERY } from "../../apollo/queries";
 import {
   RestaurantsQuery,
@@ -70,13 +70,7 @@ const Restaurants: React.FC<RestaurantsNavigationProps> = ({ navigation }) => {
 
   return (
     <View style={commonStyles.appContainer}>
-      <Pressable
-        onPress={() =>
-          navigation.navigate("OrderNotificationClient", { orderId: 55 })
-        }
-      >
-        <AppHeader heading="restaurants" />
-      </Pressable>
+      <AppHeader heading="restaurants" />
       <CategoryList categories={categories} />
       <View style={styles.listWrapper}>
         <FlatList

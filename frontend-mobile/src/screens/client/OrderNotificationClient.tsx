@@ -7,13 +7,14 @@ import {
   GetOrderQueryVariables,
 } from "../../apollo/__generated__/GetOrderQuery";
 import { OrderUpdatesSub } from "../../apollo/__generated__/OrderUpdatesSub";
-import { appColors, commonStyles } from "../../utils/styles";
+import { appColors, commonStyles, fontConstants } from "../../utils/styles";
 import { OrderNotificationClientNavigationProps } from "../../utils/types";
 import { GET_ORDER_QUERY, ORDER_SUBSCRIPTION } from "./../../apollo/queries";
 import { t } from "react-native-tailwindcss";
 import { colorConstants } from "./../../utils/styles";
 import PageLoader from "./../../components/PageLoader";
 import { OrderStatus } from "../../apollo/__generated__/globalTypes";
+import { getStatusText } from "./../../utils/helpers";
 
 const OrderNotificationClient: React.FC<OrderNotificationClientNavigationProps> =
   ({
@@ -65,54 +66,60 @@ const OrderNotificationClient: React.FC<OrderNotificationClientNavigationProps> 
     }
 
     return (
-      <View style={[commonStyles.appContainer, t.justifyCenter, t.pT0]}>
-        <LinearGradient
-          colors={["hsla(165, 69%, 47%, 1) 100%", "hsla(165, 69%, 40%, 1) 0%"]}
-          style={styles.container}
-        >
-          <Text style={[t.textWhite, t.fontBold, t.text5xl, t.textCenter]}>
-            ${data?.getOrder.order?.total}
-          </Text>
-          <View style={[t.mT5, t.w40, t.bgWhite, t.h1, t.selfCenter]} />
-          <View style={styles.contentWrapper}>
-            <View style={styles.rowContainer}>
-              <Text style={styles.contentText}>{">"} Order id</Text>
-              <Text style={styles.contentText}>#{orderId}</Text>
-            </View>
-            <View style={styles.rowContainer}>
-              <Text style={styles.contentText}>{">"} Prepared by</Text>
-              <Text style={styles.contentText}>
-                {data?.getOrder.order?.restaurant?.name}
-              </Text>
-            </View>
-            <View style={styles.rowContainer}>
-              <Text style={styles.contentText}>{">"} Customer</Text>
-              <Text style={styles.contentText}>
-                {data?.getOrder.order?.customer?.email}
-              </Text>
-            </View>
-            <View style={styles.rowContainer}>
-              <Text style={styles.contentText}>{">"} Driver</Text>
-              <Text style={styles.contentText}>
-                {data?.getOrder.order?.driver?.email || "not available yet."}
-              </Text>
-            </View>
-            {data?.getOrder.order?.status !== OrderStatus.Delivered && (
-              <View style={styles.statusPill}>
-                <Text style={styles.statusPillText}>
-                  {data?.getOrder.order?.status}
+      <View style={[commonStyles.appContainer]}>
+        <Text style={styles.topHeading}>Track order</Text>
+        <View style={[t.flex1, t.justifyCenter]}>
+          <LinearGradient
+            colors={[
+              "hsla(165, 69%, 47%, 1) 100%",
+              "hsla(165, 69%, 40%, 1) 0%",
+            ]}
+            style={styles.container}
+          >
+            <Text style={[t.textWhite, t.fontBold, t.text5xl, t.textCenter]}>
+              ${data?.getOrder.order?.total}
+            </Text>
+            <View style={[t.mT5, t.w40, t.bgWhite, t.h1, t.selfCenter]} />
+            <View style={styles.contentWrapper}>
+              <View style={styles.rowContainer}>
+                <Text style={styles.contentText}>{">"} Order id</Text>
+                <Text style={styles.contentText}>#{orderId}</Text>
+              </View>
+              <View style={styles.rowContainer}>
+                <Text style={styles.contentText}>{">"} Prepared by</Text>
+                <Text style={styles.contentText}>
+                  {data?.getOrder.order?.restaurant?.name}
                 </Text>
               </View>
-            )}
-            {data?.getOrder.order?.status === OrderStatus.Delivered && (
-              <View style={styles.btnWrapper}>
-                <Text style={[appColors.success]}>
-                  Thank you for using just eats
+              <View style={styles.rowContainer}>
+                <Text style={styles.contentText}>{">"} Customer</Text>
+                <Text style={styles.contentText}>
+                  {data?.getOrder.order?.customer?.email}
                 </Text>
               </View>
-            )}
-          </View>
-        </LinearGradient>
+              <View style={styles.rowContainer}>
+                <Text style={styles.contentText}>{">"} Driver</Text>
+                <Text style={styles.contentText}>
+                  {data?.getOrder.order?.driver?.email || "not available yet."}
+                </Text>
+              </View>
+              {data?.getOrder.order?.status !== OrderStatus.Delivered && (
+                <View style={styles.statusPill}>
+                  <Text style={styles.statusPillText}>
+                    {getStatusText(data?.getOrder.order?.status!)}
+                  </Text>
+                </View>
+              )}
+              {data?.getOrder.order?.status === OrderStatus.Delivered && (
+                <View style={styles.btnWrapper}>
+                  <Text style={[appColors.success]}>
+                    Thank you for using just eats
+                  </Text>
+                </View>
+              )}
+            </View>
+          </LinearGradient>
+        </View>
       </View>
     );
   };
@@ -120,6 +127,10 @@ const OrderNotificationClient: React.FC<OrderNotificationClientNavigationProps> 
 export default OrderNotificationClient;
 
 const styles = StyleSheet.create({
+  topHeading: {
+    fontSize: 24,
+    fontFamily: fontConstants.bold,
+  },
   container: {
     height: 450,
     width: "100%",
@@ -140,8 +151,8 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   contentText: {
-    color: colorConstants.black,
-    fontSize: 18,
+    color: colorConstants.bg,
+    fontSize: 16,
     marginTop: 10,
   },
   statusPill: {

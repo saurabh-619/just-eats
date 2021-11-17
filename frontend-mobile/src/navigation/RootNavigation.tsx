@@ -3,13 +3,14 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import About from "../screens/About";
 import OrderNotificationClient from "../screens/client/OrderNotificationClient";
-import Dashboard from "../screens/driver/Dashboard";
+import DriverDashboard from "../screens/driver/DriverDashboard";
 import OrderNotificationDriver from "../screens/driver/OrderNotificationDriver";
 import Home from "../screens/Home";
 import Login from "../screens/Login";
 import AddRestaurant from "../screens/owner/AddRestaurant";
 import MyRestaurants from "../screens/owner/MyRestaurants";
 import OrderNotificationOwner from "../screens/owner/OrderNotificationOwner";
+import OwnerDashboard from "../screens/owner/OwnerDashboard";
 import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Restaurant from "../screens/Restaurant";
@@ -51,9 +52,10 @@ export default function RootNavigation() {
           name="OrderNotificationOwner"
           component={OrderNotificationOwner}
         />
+        <Stack.Screen name="OwnerDashboard" component={OwnerDashboard} />
 
         {/* Driver */}
-        <Stack.Screen name="Dashboard" component={Dashboard} />
+        <Stack.Screen name="DriverDashboard" component={DriverDashboard} />
         <Stack.Screen
           name="OrderNotificationDriver"
           component={OrderNotificationDriver}
