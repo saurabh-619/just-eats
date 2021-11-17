@@ -1,6 +1,6 @@
 import { ApolloError, useQuery } from "@apollo/client";
+import AppLoading from "expo-app-loading";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { ME_QUERY } from "../apollo/queries";
 import { MeQuery } from "../apollo/__generated__/MeQuery";
@@ -12,12 +12,12 @@ const Splash: React.FC<SplashNavigationProps> = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const onUserFetchingError = (_: ApolloError) => {
-    setTimeout(() => navigation.replace("Login"), 2000);
+    navigation.replace("Login");
   };
 
   const onUserFetched = (data: MeQuery) => {
     dispatch(setUser(data.me));
-    setTimeout(() => initialNavigation(data.me.role, navigation), 2000);
+    initialNavigation(data.me.role, navigation);
   };
 
   useQuery<MeQuery>(ME_QUERY, {
@@ -25,19 +25,7 @@ const Splash: React.FC<SplashNavigationProps> = ({ navigation }) => {
     onError: onUserFetchingError,
   });
 
-  return (
-    <View style={styles.container}>
-      <Text>Splash</Text>
-    </View>
-  );
+  return <AppLoading />;
 };
 
 export default Splash;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

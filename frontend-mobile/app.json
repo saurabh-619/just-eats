@@ -4,7 +4,12 @@
     "slug": "just-eats-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/just-eats-icon.png",
+    "icon": "./assets/images/icon.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F4EEFF"
+    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -17,12 +22,12 @@
     "android": {
       "package": "com.justeats.app",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/just-eats-icon.png",
+        "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#F4EEFF"
       }
     },
     "web": {
-      "favicon": "./assets/just-eats-icon.png"
+      "favicon": "./assets/images/icon.png"
     }
   }
 }
