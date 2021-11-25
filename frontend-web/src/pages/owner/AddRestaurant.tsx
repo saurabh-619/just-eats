@@ -23,6 +23,11 @@ export interface IFormProps {
   inputCoverImg: string;
 }
 
+const IMG_UPLOAD_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:4000/uploads"
+    : "https://just-eats-api.herokuapp.com/uploads";
+
 const AddRestaurant = () => {
   const history = useHistory();
   const client = useApolloClient();
@@ -93,7 +98,7 @@ const AddRestaurant = () => {
       const formBody = new FormData();
       formBody.append("file", actualFile);
       const { url: coverImg } = await (
-        await fetch("http://localhost:4000/uploads", {
+        await fetch(IMG_UPLOAD_URL, {
           method: "POST",
           body: formBody,
           headers: {
