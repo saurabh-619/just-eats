@@ -1,11 +1,15 @@
 # Just eats
 
+## Logo
+
+![Logo](https://github.com/saurabh-619/just-eats/blob/main/frontend-mobile/assets/images/icon.png?raw=true)
+
 Just eats is a food delivery app made with Nest.js, React.js and React Native
 
 ## Demo
 
 - React native app - check the release section (completed - android app)
-- Web app - https://just-eats.netlify.app/ (Current in progress (till that, use android app))
+- Web app - https://just-eats.netlify.app/ [Currently under development - till that, prefer using android app]
 
 ## Run Locally
 
