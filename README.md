@@ -4,8 +4,8 @@ Just eats is a food delivery app made with Nest.js, React.js and React Native
 
 ## Demo
 
-- Web app - https://just-eats.netlify.app/
-- React native app - check the release section
+- React native app - check the release section (completed - android app)
+- Web app - https://just-eats.netlify.app/ (Current in progress (till that, use android app))
 
 ## Run Locally
 
