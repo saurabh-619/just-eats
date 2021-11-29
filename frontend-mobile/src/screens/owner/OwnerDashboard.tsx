@@ -33,7 +33,7 @@ const OwnerDashboard: React.FC<OwnerDashboardNavigationProps> = ({
         </View>
       ) : (
         <View style={styles.pickupWrapper}>
-          <Text style={styles.title}>New pickup 😀</Text>
+          <Text style={styles.title}>New order 😀</Text>
           <LinearGradient colors={["#f857a6", "#ff5858"]} style={styles.card}>
             <View style={styles.contentWrapper}>
               <View style={[t.flexRow, t.itemsCenter]}>
