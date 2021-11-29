@@ -7,8 +7,9 @@ import {
   GetOrderQuery,
   GetOrderQueryVariables,
 } from "../../apollo/__generated__/GetOrderQuery";
-import { OrderStatus } from "../../apollo/__generated__/globalTypes";
+import { OrderStatus, UserRole } from "../../apollo/__generated__/globalTypes";
 import { OrderUpdatesSub } from "../../apollo/__generated__/OrderUpdatesSub";
+import { useAppUser } from "../../hooks/useAppUser";
 import { appColors, commonStyles, fontConstants } from "../../utils/styles";
 import { OrderNotificationClientNavigationProps } from "../../utils/types";
 import { GET_ORDER_QUERY, ORDER_SUBSCRIPTION } from "./../../apollo/queries";
@@ -23,6 +24,7 @@ const OrderNotificationClient: React.FC<OrderNotificationClientNavigationProps> 
       params: { orderId },
     },
   }) => {
+    const { user } = useAppUser();
     const { data, subscribeToMore, loading } = useQuery<
       GetOrderQuery,
       GetOrderQueryVariables
@@ -112,7 +114,13 @@ const OrderNotificationClient: React.FC<OrderNotificationClientNavigationProps> 
               )}
               {data?.getOrder.order?.status === OrderStatus.Delivered && (
                 <View style={styles.btnWrapper}>
-                  <Text style={[appColors.success]}>
+                  <Text
+                    style={
+                      user?.role === UserRole.Client
+                        ? appColors.white
+                        : appColors.success
+                    }
+                  >
                     Thank you for using just eats
                   </Text>
                 </View>

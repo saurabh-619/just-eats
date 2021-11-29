@@ -20,7 +20,6 @@ const Pill: React.FC<IPillProps> = ({ option, dish }) => {
   const [isSelected, setIsSelected] = useState(false);
   const dispatch = useDispatch();
   const order = useSelector((state: RootState) => state.order.value);
-  const total = useSelector((state: RootState) => state.order.total);
 
   const handlePillClicked = () => {
     for (let i = 0; i < order.length; i++) {
@@ -61,8 +60,6 @@ const Pill: React.FC<IPillProps> = ({ option, dish }) => {
       return false;
     });
   }, [order]);
-
-  console.log({ total });
 
   return (
     <TouchableOpacity

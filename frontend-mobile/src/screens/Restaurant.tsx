@@ -15,7 +15,7 @@ import { Sales } from "../components/Restaurant/owner/Sales";
 import { ResturantHeader } from "../components/Restaurant/ResturantHeader";
 import { useAppUser } from "../hooks/useAppUser";
 import { setError } from "../redux/slices/msgSlice";
-import { resetOrder } from "../redux/slices/orderSlice";
+import { IOrderItem, resetOrder } from "../redux/slices/orderSlice";
 import { RootState } from "../redux/store";
 import { onBackPress } from "../utils/helpers";
 import { colorConstants } from "../utils/styles";
@@ -78,12 +78,14 @@ const Restaurant: React.FC<RestaurantNavigationPros> = ({
     onError: (err: ApolloError) => console.log({ err }),
   });
 
-  const handleBackPress = () => {
+  const handleBackPress = (order: IOrderItem[]) => {
+    console.log({ order });
+
     if (order.length !== 0) {
       if (Platform.OS === "android") {
         Alert.alert(
           "Are you sure?",
-          "Your order will be reset if you leave the this resturant.",
+          "Your order will be reset if you leave this resturant.",
           [
             { text: "cancel", onPress: () => {} },
             {
@@ -99,15 +101,15 @@ const Restaurant: React.FC<RestaurantNavigationPros> = ({
       } else {
         Alert.prompt(
           "Are you sure?",
-          "Your order will be reset if you leave the this resturant.",
+          "Your order will be reset if you leave this resturant.",
           [
             { text: "cancel", onPress: () => {} },
             {
               text: "reset",
               style: "destructive",
               onPress: () => {
-                dispatch(resetOrder());
                 navigation.goBack();
+                dispatch(resetOrder());
               },
             },
           ]
@@ -120,7 +122,7 @@ const Restaurant: React.FC<RestaurantNavigationPros> = ({
   };
 
   useEffect(() => {
-    onBackPress(handleBackPress);
+    onBackPress(() => handleBackPress(order));
     if (user?.role === UserRole.Owner) {
       myRestaurantQuery();
     } else {

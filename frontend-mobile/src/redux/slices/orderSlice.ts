@@ -4,7 +4,7 @@ interface IOption {
   name: string;
   extra?: number;
 }
-interface IOrderItem {
+export interface IOrderItem {
   dishId: number;
   options: IOption[];
   price?: number;
@@ -25,8 +25,9 @@ const orderSlice = createSlice({
   initialState,
   reducers: {
     addOrderItem: (state, { payload }: PayloadAction<IOrderItem>) => {
+      console.log({ payload });
       if (
-        state.value.find((item) => item.dishId !== payload.dishId) === undefined
+        state.value.find((item) => item.dishId === payload.dishId) === undefined
       ) {
         state.value.push(payload);
         state.value = state.value;
@@ -84,6 +85,7 @@ const orderSlice = createSlice({
       });
     },
     resetOrder: (state) => {
+      console.log("reset order");
       state.value = [];
       state.total = 0;
     },

@@ -35,7 +35,7 @@ const DishCard: React.FC<IDishCardProps> = ({ dish, isOrderingStarted }) => {
 
   useEffect(() => {
     setIsOrderItem(order.find((item) => item.dishId === dish.id) !== undefined);
-  }, [order]);
+  }, [order.length]);
 
   return (
     <View

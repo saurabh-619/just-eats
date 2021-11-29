@@ -49,8 +49,10 @@ const Restaurants: React.FC<RestaurantsNavigationProps> = ({ navigation }) => {
   );
 
   const fetchMoreItems = () => {
-    console.log("Fetching next ...");
-    setPage((prev) => prev + 1);
+    if (!noMore) {
+      console.log("Fetching next ...");
+      setPage((prev) => prev + 1);
+    }
   };
 
   const FooterComponent = () => {

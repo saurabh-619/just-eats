@@ -59,11 +59,11 @@ const Profile: React.FC<ProfileNavigationProps> = ({ navigation }) => {
           )}
         </View>
       </View>
-      <View style={styles.profileDetails}>
+      <View style={styles.profileDetailsMail}>
         <Feather name="mail" style={styles.profileIcons} />
         <Text style={styles.detailText}>{user?.email}</Text>
       </View>
-      <View style={styles.profileDetails}>
+      <View style={styles.profileDetailsJoin}>
         <View style={[t.flexRow]}>
           <Feather name="calendar" style={[styles.profileIcons, t.mR5]} />
           <Text style={styles.detailText}>
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   image: {
-    marginTop: 0,
+    marginTop: 5,
     height: 90,
     width: 90,
     marginBottom: 15,
@@ -134,7 +134,14 @@ const styles = StyleSheet.create({
     fontSize: 32,
     color: colorConstants.success,
   },
-  profileDetails: {
+  profileDetailsMail: {
+    marginTop: 15,
+    padding: 10,
+    paddingLeft: 25,
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  profileDetailsJoin: {
     marginTop: 15,
     padding: 10,
     paddingLeft: 25,
@@ -145,7 +152,7 @@ const styles = StyleSheet.create({
   profileIcons: {
     fontSize: 20,
     color: colorConstants.primary,
-    marginRight: 10,
+    marginRight: 20,
   },
   detailText: {
     fontSize: 18,

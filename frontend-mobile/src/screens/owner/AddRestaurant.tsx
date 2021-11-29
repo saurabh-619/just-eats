@@ -122,7 +122,7 @@ const AddRestaurant: React.FC<AddRestaurantNavigationProps> = ({
   return (
     <KeyboardAwareScrollView style={styles.keyBoardContainer}>
       <View style={[commonStyles.appContainer, t.mB5]}>
-        <Text style={commonStyles.appTitle}>Register</Text>
+        <Text style={commonStyles.appTitle}>new restaurant</Text>
         <Text style={[commonStyles.appHeading, getMarginTop(45).margin]}>
           New venture huhh 🥕
         </Text>
